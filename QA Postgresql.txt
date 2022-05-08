@@ -1,0 +1,118 @@
+--POSTGRESQL ASSIGNMENT
+
+--1. How many payment transactions were greater than $5.00? Answer = 3618
+select count(*)
+from payment
+where amount > 5
+
+--2. How many actors have a first name that starts with the letter P? Answer = 5
+select count(*)
+from actor
+where first_name like 'P%'
+
+--3. How many unique districts are our customers from? Answer = 603
+select distinct count(district)
+from address
+
+--4. Retrieve the list of names for those distinct districts from the previous question.
+select distinct (district)
+from address
+
+--5. How many films have a rating of R and a replacement cost between $5 and $15? Answer = 52
+select count(*)
+from film
+where rating = 'R' and replacement_cost between 5 and 15
+
+--6. How many films have the word Truman somewhere in the title? Answer = 5
+select count(*) 
+from film
+where title like '%Truman%'
+
+/* 7. We want to know what customers are eligible for our platinum credit card. 
+The requirements are that the customer has at least a total of 40 transaction payments. 
+What customers are eligible for the credit card? */
+
+select 
+customer_id,
+count (payment_id) as transaction_payments
+from payment
+group by customer_id 
+having count (payment_id) >= 40
+order by customer_id asc
+
+/* 8. When grouped by rating, what movie ratings have an average rental duration of more than 5 days? */ 
+
+select 
+rating,
+avg(rental_duration)
+from film
+group by rating
+having avg (rental_duration) > 5
+
+/* 9. Create a Jumia table that has the following column User_id, Username, Password, Email Address, 
+Phone No (fake No) & Location.*/
+create table jumia(
+User_id int primary key,
+Username varchar(50),
+Password_user varchar(25),
+Email_address varchar(40),
+Phone_no int,
+Location_biz varchar(50)
+);
+
+
+
+/* 10. Insert 50 data into the table
+Submit*/
+
+insert into jumia(username, password_user,email_address, phone_no, location_biz)
+values('Sánchez',	'x2sa1n4chq188','ken0@jumia.com',6975550142,'Nigeria'),
+('Duffy',	'x2sa1n4chq189', 'terri0@jumia.com', 8195550175, 'United Arab Emirates'),
+('Tamburello','x2sa1n4chq190', 'roberto0@jumia.com', 2125550187,	'Afghanistan'),
+('Walters',	'x2sa1n4chq191', 'rob0@jumia.com', 6125550100, 'Antigua and Barbuda'),
+('Erickson',  'x2sa1n4chq192',	'gail0@jumia.com', 8495550139, 'Anguilla'),
+('Goldberg',	'x2sa1n4chq193','jossef0@jumia.com',1225550189,	'Albania'),
+( 'Miller',	'x2sa1n4chq194', 'dylan0@jumia.com', 1815550156,	'Armenia'),
+( 'Margheim',	'x2sa1n4chq195', 'diane1@jumia.com', 8155550138,	'Netherlands'),
+( 'Matthew',  'x2sa1n4chq196', 'gigi0@jumia.com', 1855550186,	'Angola'),
+( 'Raheem',	'x2sa1n4chq197', 'michael6@jumia.com', 3305552568,	'Antarctica'),
+( 'Cracium',	'x2sa1n4chq198', 'ovidiu0@jumia.com',  7195550181,	'Argentina'),
+( 'D Hers',	'x2sa1n4chq199', 'thierry0@jumia.com',	1685550183,	'American Samoa'),
+( 'Galvin',	'x2sa1n4chq200', 'janice0@jumia.com',	4735550117,	'Austria'),
+( 'Sullivan',	'x2sa1n4chq201', 'michael8@jumia.com',	4655550156,	'Australia'),
+( 'Salavaria','x2sa1n4chq202', 'sharon0@jumia.com',	9705550138,	'Aruba'),
+( 'Bradley',	'x2sa1n4chq203', 'david0@jumia.com',	9135550172,	'Azerbaijan'),
+( 'Brown',	'x2sa1n4chq204', 'kevin0@jumia.com',	1505550189,	'Nigeria'),
+( 'Wood',	'x2sa1n4chq205',	'john5@jumia.com',	4865550150,	'Barbados'),
+( 'Dempsey',	'x2sa1n4chq206',	'mary2@jumia.com',	1245550114,	'Bangladesh'),
+( 'Benshoof',	'x2sa1n4chq207',	'wanida0@jumia.com',	7085550141,	'Belgium'),
+( 'Eminhizer', 'x2sa1n4chq208',      'terry0@jumia.com',	1385550118,	'Burkina Faso'),
+( 'Harnpadoungsataya', 'x2sa1n4chq209', 'sariya0@jumia.com',	3995550176,	'Bulgaria'),
+( 'Gibson',	'x2sa1n4chq210',	'mary0@jumia.com',	5315550183,	'Bahrain'),
+( 'Williams',	'x2sa1n4chq211',	'jill0@jumia.com',	5105550121,	'Burundi'),
+( 'Hamilton',	'x2sa1n4chq212',	'james1@jumia.com',	8705550122,	'Benin'),
+( 'Krebs',	'x2sa1n4chq213',	'peter0@jumia.com',	9135550196,	'Bermuda'),
+( 'Brown',	'x2sa1n4chq214',	'jo0@jumia.com',	6325550129,	'Brunei')
+( 'McArthur', 'x2sa1n4chq216',	'mark1@jumia.com', 4175550154, 'Brazil'),
+( 'Simon',	'x2sa1n4chq217',	'britta0@jumia.com',	9555550169,	'Bahamas'),
+( 'Shoop',	'x2sa1n4chq218',	'margie0@jumia.com',	8185550128,	'Bhutan'),
+( 'Laszlo',	'x2sa1n4chq219',	'rebecca0@jumia.com',	3145550113,	'Bouvet Island'),
+( 'Stahl',	'x2sa1n4chq220',	'annik0@jumia.com',	4995550125,	'Botswana'),
+( 'Mohan',	'x2sa1n4chq221',	'suchitra0@jumia.com',	7535550129,	'Belarus'),
+( 'Heidepriem','x2sa1n4chq222','brandon0@jumia.com',	4295550137,	'Belize'),
+( 'Lugo',	'x2sa1n4chq158',	'jose0@jumia.com',	5875550115,	'Canada'),
+( 'Okelberry', 'x2sa1n4chq159','chris2@jumia.com',	3155550144,	'Cocos Islands'),
+( 'Abercrombie', 'x2sa1n4chq160', 'kim1@jumia.com',	2085550114,	'Congo DRC'),
+( 'Dudenhoefer', 'x2sa1n4chq161', 'ed0@jumia.com',	9195550140,	'Central African Republic'),
+( 'Dobney',	'x2sa1n4chq162',	'jolynn0@jumia.com',	9035550145,	'Congo'),
+( 'Baker',	'x2sa1n4chq163',	'bryan0@jumia.com',	7125550113,	'Switzerland'),
+( 'Kramer',	'x2sa1n4chq164',	'james0@jumia.com',	1195550117,	'Côte d Ivoire'),
+( 'Anderson',	'x2sa1n4chq165',	'nancy0@jumia.com',	9705550118,	'Cook Islands'),
+( 'Rapier',	'x2sa1n4chq166',	'simon0@jumia.com',	9635550134,	'Chile'),
+( 'Michaels',	'x2sa1n4chq167',	'thomas0@jumia.com',	2785550118,	'Cameroon'),
+( 'Kogan',	'x2sa1n4chq168',	'eugene1@jumia.com',	1735550179,	'China'),
+( 'Hill',	'x2sa1n4chq169',	'andrew0@jumia.com',	9085550159,	'Colombia'),
+( 'Ellerbrock','x2sa1n4chq170', 'ruth0@jumia.com',	        1455550130,	'Costa Rica'),
+( 'Johnson',	'x2sa1n4chq171',	'barry0@jumia.com',	2065550180,	'Serbia'),
+( 'Higa',	'x2sa1n4chq172',	'sidney0@jumia.com',	4245550189,	'Cuba')
+( 'Onyeka',	'fZcvxdtjs67r4',	'onyeka@jumia.com',	+2348099467387, 'Nigeria');
